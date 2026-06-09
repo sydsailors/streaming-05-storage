@@ -103,6 +103,7 @@ REJECTED_TABLE_NAME: Final[str] = "consumed_rejected_sales"
 
 CONSUMED_VALID_FIELDNAMES: Final[list[str]] = [
     *VALID_SALES_FIELDNAMES,
+    "discount_amount",
     "_kafka_key",
     "_kafka_partition",
     "_kafka_offset",

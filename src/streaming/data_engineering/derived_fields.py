@@ -14,8 +14,8 @@ We add total_price, tax_amount, and total as derived fields in this example.
 The producer sends raw measurements only.
 The consumer is responsible for all derived calculations.
 
-Author: Denise Case
-Date: 2026-05
+Author: Sydney Sailors
+Date: 2026-06
 
 OBS:
   You can add functions and extend this file OR
@@ -103,14 +103,22 @@ def enrich_message(
     unit_price = float(row.get("unit_price", 0.0))
     region_id = str(row.get("region_id", ""))
 
-    tax_rate = get_tax_rate(region_id, region_lookup)
-    total_price = compute_total_price(quantity, unit_price)
-    tax_amount = compute_tax_amount(total_price, tax_rate)
+    discount_pct = float(row.get("discount_pct", 0.0))
+    subtotal = compute_total_price(quantity, unit_price)
 
-    total = round(total_price + tax_amount, 2)
+    discount_amount = round(subtotal * discount_pct / 100, 2)
+    price_after_discount = round(subtotal - discount_amount, 2)
+
+    tax_rate = get_tax_rate(region_id, region_lookup)
+    tax_amount = compute_tax_amount(price_after_discount, tax_rate)
+
+    total = round(price_after_discount + tax_amount, 2)
     return {
         **row,
-        "subtotal": total_price,
+        "subtotal": subtotal,
+        "discount_pct": discount_pct,
+        "discount_amount": discount_amount,
+        "price_after_discount": price_after_discount,
         "tax_amount": tax_amount,
         "total": total,
     }
