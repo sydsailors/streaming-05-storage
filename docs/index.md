@@ -79,7 +79,7 @@ Rejected records are logged and skipped.
 
 #### Phase 4: Small Technical Modification
 
-I stored an additional field, `discount_amount` in DuckDB.
+I stored an additional field, `discount_amount`, in DuckDB.
 
 #### Phase 5: Apply the Skills
 
@@ -99,7 +99,7 @@ The DuckDB output enabled direct querying of enriched streaming results.
 
 ### Interpretation
 
-This project showed how Kafka consumers can incrementally ehnahce
+This project showed how Kafka consumers can incrementally enhance
 streaming data without modifying the original dataset.
 
 I was able to confirm the enrichment logic was applied correctly
