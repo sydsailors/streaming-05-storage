@@ -115,6 +115,7 @@ def enrich_message(
     total = round(price_after_discount + tax_amount, 2)
     return {
         **row,
+        "tax_rate": tax_rate,
         "subtotal": subtotal,
         "discount_pct": discount_pct,
         "discount_amount": discount_amount,
