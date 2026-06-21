@@ -221,9 +221,18 @@ If running Windows, use **PowerShell**.
 Run the commands one at a time.
 Clear the terminal, then start the consumer.
 
+### Phase 4
+
 ```shell
 clear
-uv run python -m streaming.kafka_consumer_case
+uv run python -m streaming.kafka_consumer_sailors
+```
+
+### Phase 5
+
+```shell
+clear
+uv run python -m streaming.kafka_consumer_sailorsP5
 ```
 
 To start fresh, see

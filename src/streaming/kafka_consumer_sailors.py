@@ -1,4 +1,4 @@
-"""src/streaming/kafka_consumer_case.py.
+"""src/streaming/kafka_consumer_sailors.py.
 
 Kafka consumer: full pipeline example.
 
