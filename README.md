@@ -260,7 +260,7 @@ Press `Ctrl+c` (both keys together) or `Ctrl+Z` then `Enter` on Windows.
 
 The example producer output is unchanged from previous projects.
 
-## Example Consumer Output
+## Consumer P5 Output
 
 Look for the text `db`:
 
@@ -270,12 +270,12 @@ Look for the text `db`:
 | C05 | ========================
 | C05 | ROOT_DIR = .
 | C05 | DATA_DIR = data
-| C05 | OUTPUT_CSV = data\output\consumed_sales.csv
-| C05 | OUTPUT_DB = data\output\sales.duckdb
-| C05 | REGIONS_CSV = data\regions.csv
-| C05 | PRODUCTS_CSV = data\products.csv
-| C05 | CURRENCIES_CSV = data\currencies.csv
-| C05 | DISCOUNT_CODES_CSV = data\discount_codes.csv
+| C05 | OUTPUT_CSV = data/output/consumed_sales_sailorsP5.csv
+| C05 | OUTPUT_DB = data/output/sales_sailorsP5.duckdb
+| C05 | REGIONS_CSV = data/regions.csv
+| C05 | PRODUCTS_CSV = data/products.csv
+| C05 | CURRENCIES_CSV = data/currencies.csv
+| C05 | DISCOUNT_CODES_CSV = data/discount_codes.csv
 | C05 | ========================
 | C05 | SECTION A. Acquire
 | C05 | ========================
@@ -288,25 +288,23 @@ Look for the text `db`:
 | C05 | Verifying Kafka connection...
 | C05 | Kafka port is reachable.
 | C05 | Verifying Kafka topic...
-%3|1778437824.601|FAIL|rdkafka#producer-1| [thrd:localhost:9092/bootstrap]: localhost:9092/bootstrap: Connect to ipv4#127.0.0.1:9092 failed: Unknown error (after 2040ms in state CONNECT)
-%3|1778437826.740|FAIL|rdkafka#producer-1| [thrd:localhost:9092/1]: localhost:9092/1: Connect to ipv4#127.0.0.1:9092 failed: Unknown error (after 2037ms in state CONNECT)
 | C05 | Topic 'streaming-05-storage-case' exists.
-| C05 | Found 3 message(s) available.
+| C05 | Found 10 message(s) available.
 | C05 | Creating Kafka consumer...
 | C05 | Subscribed to topic: 'streaming-05-storage-case' (reading from beginning)
 | C05 | ========================
 | C05 | SECTION C. Consume and Process Messages
 | C05 | ========================
 | C05 | Initializing output...
-| C05 | Output CSV cleared: consumed_sales.csv
-| C05 | Database initialized: sales.duckdb
+| C05 | Output CSV cleared: consumed_sales_sailorsP5.csv
+| C05 | Database initialized: sales_sailorsP5.duckdb
 | C05 | Loading enrichment reference data...
 | C05 | Found 6 region tax rates.
 | C05 | Consuming messages...
 | C05 | Waiting for up to 1000 message(s).
 | C05 | Press CTRL+C to stop early.
 
-| C05 | {'currency_code': 'USD', 'customer_id': 'CUST-4150', 'customer_note': 'Gift for my team', 'datetime': '2026-05-04T08:11:00Z', 'device_type': 'tablet', 'discount_code': '', 'is_new_customer': 'false', 'is_online': 'true', 'order_id': 'e7324981-a9f0-419f-b708-d0a333451fff', 'payment_method': 'paypal', 'product_id': 'PY-STREAM-005', 'quantity': '3', 'referral_source': 'paid_search', 'region_id': 'US-TX', 'unit_price': '59.99', '_kafka_key': 'US-TX', '_kafka_partition': 0, '_kafka_offset': 0}
+| {'currency_code': 'USD', 'customer_id': 'CUST-4150', 'customer_note': 'Gift for my team', 'datetime': '2026-05-04T08:11:00Z', 'device_type': 'tablet', 'discount_code': '', 'is_new_customer': 'false', 'is_online': 'true', 'order_id': 'e7324981-a9f0-419f-b708-d0a333451fff', 'payment_method': 'paypal', 'product_id': 'PY-STREAM-005', 'quantity': '3', 'referral_source': 'paid_search', 'region_id': 'US-TX', 'unit_price': '59.99', '_kafka_key': 'US-TX', '_kafka_partition': 0, '_kafka_offset': 0}
 | C05 | subtotal=179.97
 | C05 | tax=14.85
 | C05 | total=194.82
@@ -354,22 +352,134 @@ Look for the text `db`:
 | C05 | average=$104.05
 | C05 | min=$54.11
 | C05 | max=$194.82
+| C05 | {'currency_code': 'USD', 'customer_id': 'CUST-5333', 'customer_note': 'Highly recommend', 'datetime': '2026-05-04T08:40:00Z', 'device_type': 'mobile', 'discount_code': '', 'is_new_customer': 'false', 'is_online': 'true', 'order_id': 'd77ed935-9b28-431d-bc25-0a3fd98f4154', 'payment_method': 'paypal', 'product_id': 'PY-STREAM-005', 'quantity': '1', 'referral_source': 'organic', 'region_id': 'US-CA', 'unit_price': '59.99', '_kafka_key': 'US-CA', '_kafka_partition': 0, '_kafka_offset': 3}
+| C05 | subtotal=59.99
+| C05 | tax=5.7
+| C05 | total=65.69
+| C05 | running_total=377.84
+| C05 | Wrote valid record to DuckDB:
+| C05 |   order=d77ed935-9b28-431d-bc25-0a3fd98f4154
+| C05 | MESSAGE ACCEPTED
+| C05 | order=d77ed935-9b28-431d-bc25-0a3fd98f4154
+| C05 | total=$65.69
+| C05 | consumed=4
+| C05 | RUNNING STATS
+| C05 | total_sales=$377.84
+| C05 | average=$94.46
+| C05 | min=$54.11
+| C05 | max=$194.82
+| C05 | {'currency_code': 'USD', 'customer_id': 'CUST-8573', 'customer_note': 'Learning at my own pace', 'datetime': '2026-05-04T08:41:00Z', 'device_type': 'mobile', 'discount_code': '', 'is_new_customer': 'false', 'is_online': 'true', 'order_id': '24b91995-25f8-4ad7-8fa6-2e4c15750e5e', 'payment_method': 'apple_pay', 'product_id': 'PY-VIZ-003', 'quantity': '1', 'referral_source': 'paid_search', 'region_id': 'US-MO', 'unit_price': '39.99', '_kafka_key': 'US-MO', '_kafka_partition': 0, '_kafka_offset': 4}
+| C05 | subtotal=39.99
+| C05 | tax=3.2
+| C05 | total=43.19
+| C05 | running_total=421.03
+| C05 | Wrote valid record to DuckDB:
+| C05 |   order=24b91995-25f8-4ad7-8fa6-2e4c15750e5e
+| C05 | MESSAGE ACCEPTED
+| C05 | order=24b91995-25f8-4ad7-8fa6-2e4c15750e5e
+| C05 | total=$43.19
+| C05 | consumed=5
+| C05 | RUNNING STATS
+| C05 | total_sales=$421.03
+| C05 | average=$84.21
+| C05 | min=$43.19
+| C05 | max=$194.82
+| C05 | {'currency_code': 'CAD', 'customer_id': 'CUST-8062', 'customer_note': '', 'datetime': '2026-05-04T08:54:00Z', 'device_type': 'tablet', 'discount_code': '', 'is_new_customer': 'false', 'is_online': 'true', 'order_id': '1ec0fc8b-998c-4f43-8a66-19e1fa7d5fa8', 'payment_method': 'paypal', 'product_id': 'PY-SQL-004', 'quantity': '1', 'referral_source': 'organic', 'region_id': 'CA-ON', 'unit_price': '44.99', '_kafka_key': 'CA-ON', '_kafka_partition': 0, '_kafka_offset': 5}
+| C05 | subtotal=44.99
+| C05 | tax=5.85
+| C05 | total=50.84
+| C05 | running_total=471.87
+| C05 | Wrote valid record to DuckDB:
+| C05 |   order=1ec0fc8b-998c-4f43-8a66-19e1fa7d5fa8
+| C05 | MESSAGE ACCEPTED
+| C05 | order=1ec0fc8b-998c-4f43-8a66-19e1fa7d5fa8
+| C05 | total=$50.84
+| C05 | consumed=6
+| C05 | RUNNING STATS
+| C05 | total_sales=$471.87
+| C05 | average=$78.64
+| C05 | min=$43.19
+| C05 | max=$194.82
+| C05 | {'currency_code': 'CAD', 'customer_id': 'CUST-9348', 'customer_note': 'For my study group', 'datetime': '2026-05-04T09:07:00Z', 'device_type': 'desktop', 'discount_code': '', 'is_new_customer': 'false', 'is_online': 'false', 'order_id': '392dd49b-b385-499c-9b4a-a38387fa39ae', 'payment_method': 'credit_card', 'product_id': 'PY-INTRO-001', 'quantity': '1', 'referral_source': 'paid_search', 'region_id': 'CA-ON', 'unit_price': '29.99', '_kafka_key': 'CA-ON', '_kafka_partition': 0, '_kafka_offset': 6}
+| C05 | subtotal=29.99
+| C05 | tax=3.9
+| C05 | total=33.89
+| C05 | running_total=505.76
+| C05 | Wrote valid record to DuckDB:
+| C05 |   order=392dd49b-b385-499c-9b4a-a38387fa39ae
+| C05 | MESSAGE ACCEPTED
+| C05 | order=392dd49b-b385-499c-9b4a-a38387fa39ae
+| C05 | total=$33.89
+| C05 | consumed=7
+| C05 | RUNNING STATS
+| C05 | total_sales=$505.76
+| C05 | average=$72.25
+| C05 | min=$33.89
+| C05 | max=$194.82
+| C05 | {'currency_code': 'USD', 'customer_id': 'CUST-5889', 'customer_note': '', 'datetime': '2026-05-04T09:15:00Z', 'device_type': 'tablet', 'discount_code': '', 'is_new_customer': 'false', 'is_online': 'true', 'order_id': '02782ab7-dd7d-4ebe-8abc-ef81cdc4193b', 'payment_method': 'paypal', 'product_id': 'PY-VIZ-003', 'quantity': '1', 'referral_source': 'organic', 'region_id': 'US-CA', 'unit_price': '39.99', '_kafka_key': 'US-CA', '_kafka_partition': 0, '_kafka_offset': 7}
+| C05 | subtotal=39.99
+| C05 | tax=3.8
+| C05 | total=43.79
+| C05 | running_total=549.55
+| C05 | Wrote valid record to DuckDB:
+| C05 |   order=02782ab7-dd7d-4ebe-8abc-ef81cdc4193b
+| C05 | MESSAGE ACCEPTED
+| C05 | order=02782ab7-dd7d-4ebe-8abc-ef81cdc4193b
+| C05 | total=$43.79
+| C05 | consumed=8
+| C05 | RUNNING STATS
+| C05 | total_sales=$549.55
+| C05 | average=$68.69
+| C05 | min=$33.89
+| C05 | max=$194.82
+| C05 | {'currency_code': 'CAD', 'customer_id': 'CUST-4770', 'customer_note': 'Excellent content', 'datetime': '2026-05-04T09:19:00Z', 'device_type': 'desktop', 'discount_code': '', 'is_new_customer': 'false', 'is_online': 'true', 'order_id': '67bd3492-cc96-429a-9a91-1b4d2132d261', 'payment_method': 'credit_card', 'product_id': 'PY-VIZ-003', 'quantity': '1', 'referral_source': 'paid_search', 'region_id': 'CA-ON', 'unit_price': '39.99', '_kafka_key': 'CA-ON', '_kafka_partition': 0, '_kafka_offset': 8}
+| C05 | subtotal=39.99
+| C05 | tax=5.2
+| C05 | total=45.19
+| C05 | running_total=594.74
+| C05 | Wrote valid record to DuckDB:
+| C05 |   order=67bd3492-cc96-429a-9a91-1b4d2132d261
+| C05 | MESSAGE ACCEPTED
+| C05 | order=67bd3492-cc96-429a-9a91-1b4d2132d261
+| C05 | total=$45.19
+| C05 | consumed=9
+| C05 | RUNNING STATS
+| C05 | total_sales=$594.74
+| C05 | average=$66.08
+| C05 | min=$33.89
+| C05 | max=$194.82
+| C05 | {'currency_code': 'MXN', 'customer_id': 'CUST-6168', 'customer_note': '', 'datetime': '2026-05-04T09:37:00Z', 'device_type': 'desktop', 'discount_code': '', 'is_new_customer': 'false', 'is_online': 'true', 'order_id': '0a021628-6937-4876-8875-b00c07a39e0f', 'payment_method': 'paypal', 'product_id': 'PY-DATA-002', 'quantity': '1', 'referral_source': 'organic', 'region_id': 'MX-CMX', 'unit_price': '49.99', '_kafka_key': 'MX-CMX', '_kafka_partition': 0, '_kafka_offset': 9}
+| C05 | subtotal=49.99
+| C05 | tax=8.0
+| C05 | total=57.99
+| C05 | running_total=652.73
+| C05 | Wrote valid record to DuckDB:
+| C05 |   order=0a021628-6937-4876-8875-b00c07a39e0f
+| C05 | MESSAGE ACCEPTED
+| C05 | order=0a021628-6937-4876-8875-b00c07a39e0f
+| C05 | total=$57.99
+| C05 | consumed=10
+| C05 | RUNNING STATS
+| C05 | total_sales=$652.73
+| C05 | average=$65.27
+| C05 | min=$33.89
+| C05 | max=$194.82
 | C05 | No message received within 10.0s timeout.
 | C05 | Producer finished or paused. Stopping consumer.
 | C05 | Kafka consumer closed.
 | C05 | Saving artifacts...
-| C05 | WROTE OUTPUT_CSV = data\output\consumed_sales.csv
-| C05 | WROTE OUTPUT_DB = data\output\sales.duckdb
+| C05 | WROTE OUTPUT_CSV = data/output/consumed_sales_sailorsP5.csv
+| C05 | WROTE OUTPUT_DB = data/output/sales_sailorsP5.duckdb
 | C05 | ========================
 | C05 | SECTION E. Exit
 | C05 | ========================
 | C05 | Summary:
-| C05 | Consumed 3 message(s) from topic 'streaming-05-storage-case'.
+| C05 | Consumed 10 message(s) from topic 'streaming-05-storage-case'.
 | C05 | Skipped  0 message(s).
-| C05 | OUTPUT_CSV = data\output\consumed_sales.csv
-| C05 |   Total sales:  $312.15
-| C05 |   Average sale: $104.05
-| C05 |   Minimum sale: $54.11
+| C05 | OUTPUT_CSV = data/output/consumed_sales_sailorsP5.csv
+| C05 |   Total sales:  $652.73
+| C05 |   Average sale: $65.27
+| C05 |   Minimum sale: $33.89
 | C05 |   Maximum sale: $194.82
 | C05 | ========================
 | C05 | Consumer executed successfully!
